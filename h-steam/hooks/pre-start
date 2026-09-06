@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+APP_DIR="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")/..")"
+APP_DATA_DIR="${APP_DIR}/data"
+
+# Create required directories with proper ownership for Steam Headless
+mkdir -p "${APP_DATA_DIR}/home"
+mkdir -p "${APP_DATA_DIR}/games"
+mkdir -p "${APP_DATA_DIR}/sockets/.X11-unix"
+mkdir -p "${APP_DATA_DIR}/sockets/pulse"
+
+chown -R 1000:1000 "${APP_DATA_DIR}"
+
